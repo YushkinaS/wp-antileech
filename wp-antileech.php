@@ -12,6 +12,9 @@ class File_Download {
         add_action( 'init',                               array( $this, 'add_rewrite_rules' ), 99 );
         add_filter( 'template_include',                   array( $this, 'use_custom_template' ), 99 );
         add_filter( 'rwmb_meta_boxes',                    array( $this, 'set_metaboxes' ) );    
+        if ( is_admin() ) {
+			register_activation_hook( __FILE__,           array( $this, 'activate' ) );
+		}
     }
     
     function activate() {
